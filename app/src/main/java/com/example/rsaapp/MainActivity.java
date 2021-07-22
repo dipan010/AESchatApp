@@ -47,6 +47,70 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void btn_decrypt(View view){
+        String phoneNumber = txt_pNumber.getText().toString().trim();
+        String Message = txt_message.getText().toString().trim();
+        String Enc_text = "";
+        String Dec_text="";
+
+        AESEncyption enc = new AESEncyption();
+        try {
+            Enc_text = enc.encrypt(Message);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        txt_rsa_output.setText(Enc_text);
+
+        /*if (!txt_pNumber.getText().toString().equals("") || !txt_message.getText().toString().equals("")) {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNumber, null, Enc_text, null, null);
+            Toast.makeText(this, "Message sent", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show();
+
+        }*/
+
+        AESEncyption dec = new AESEncyption();
+        try {
+            Dec_text = dec.decrypt(Enc_text);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (!txt_pNumber.getText().toString().equals("") || !txt_message.getText().toString().equals("")) {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNumber, null, Dec_text, null, null);
+            Toast.makeText(this, "Message sent", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show();
+
+        }
+        Toast.makeText(this,Dec_text,Toast.LENGTH_SHORT).show();
+    }
+
     private void MyMessage() {
         String phoneNumber = txt_pNumber.getText().toString().trim();
         String Message = txt_message.getText().toString().trim();
@@ -70,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         txt_rsa_output.setText(Enc_text);
+
         if (!txt_pNumber.getText().toString().equals("") || !txt_message.getText().toString().equals("")) {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNumber, null, Enc_text, null, null);
