@@ -37,7 +37,7 @@
         />
 
     <EditText
-        android:id="@+id/txt_rsa_output"
+        android:id="@+id/txt_output"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -52,8 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:onClick="btn_decrypt"
-        android:text="Decrypt and Send"
+        android:onClick="send"
+        android:text="Send"
         android:textSize="25sp"
         />
 
