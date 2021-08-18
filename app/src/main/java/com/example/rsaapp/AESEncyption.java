@@ -13,7 +13,6 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AESEncyption {
-
     private static final int pswdIterations = 10;
     private static final int keySize = 128;
     private static final String cypherInstance = "AES/CBC/PKCS5Padding";
